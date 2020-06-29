@@ -13,6 +13,7 @@ class Vehicle():
         self.r = 6
         self.maxspeed = 5
         self.maxforce = 0.2
+        self.hunted = 0
 
     # Method to update location
     def update(self):
@@ -30,6 +31,7 @@ class Vehicle():
 
     # A method that calculates a steering force towards a target
     # STEER = DESIRED MINUS VELOCITY
+    
     def seek(self, target):
 
         # A vector pointing from the location to the target
@@ -42,13 +44,16 @@ class Vehicle():
         steer.limit(self.maxforce)  # Limit to maximum steering force
 
         self.applyForce(steer)
-    
-    def arrive(self, target):
-
+        
+    #Metodo para cacar um o alvo
+    def hunt(self, target):
+        
+        #adicao um atributo on the Fly
+        self.alvo = target
+        
         # A vector pointing from the location to the target
-        desired = target - self.position
+        desired = self.alvo.position - self.position
         d = desired.mag()
-
         # Scale with arbitrary damping within 100 pixels
         if (d < 100):
             m = map(d, 0, 100, 0, self.maxspeed)
@@ -59,12 +64,24 @@ class Vehicle():
         # Steering = Desired minus velocity
         steer = desired - self.velocity
         steer.limit(self.maxforce)  # Limit to maximum steering force
-
         self.applyForce(steer)
+        
+        #teste de contato com o alvo
+        if(d < 5):
+            self.comer_alvo()
+            steer.limit(self.maxforce)
+            self.velocity=(PVector(0,0))
+            
+    
+    #Metodo para 'Comer' outro objeto
+    def comer_alvo(self):
+        self.alvo.morrer()
+        del self.alvo
+        self.hunted += 1
 
     def display(self):
         # Draw a triangle rotated in the direction of velocity
-        theta = self.velocity.heading()# + PI / 2
+        theta = self.velocity.heading() + PI / 2
         fill(127)
         noStroke()
         strokeWeight(1)

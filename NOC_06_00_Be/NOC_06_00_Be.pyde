@@ -11,15 +11,18 @@
 # See: http://www.red3d.com/cwr/
 
 from Vehicle import Vehicle
+from Food import Food
 
 def setup():
-    global vehicle
+    global vehicle, foof
     size(640, 360)
     velocity = PVector(0, 0)
     vehicle = Vehicle(width / 2, height / 2, velocity)
+    food  = Food(random(width),random(height), PVector(0,0))
 
 def draw():
     background(255)
     mouse = PVector(mouseX, mouseY)
     vehicle.update()
     vehicle.display()
+    food.display()
