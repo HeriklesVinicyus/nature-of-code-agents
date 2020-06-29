@@ -10,6 +10,8 @@
 # One vehicle "seeks"
 # See: http://www.red3d.com/cwr/
 
+from random import randint #######################################################################################
+
 from Vehicle import Vehicle
 from Food import Food
 
@@ -19,12 +21,14 @@ def acrecetar_comida():
         
 
 def setup():
-    global agente, foods
+    global agente, foods, food1
     size(640, 360)
     velocity = PVector(0, 0)
     agente = Vehicle(width / 2, height / 2, velocity)
-    foods = [Food(random(width),random(height), PVector(0,0)) for x in range(3)]
 
+    quantidade = randint(0, 20)
+    print(quantidade) ############################################################################################
+    foods = [Food(random(width),random(height), PVector(0,0)) for x in range(quantidade)] ########################
 
 def draw():
     background(255)
@@ -35,10 +39,9 @@ def draw():
     fill(0, 0, 0)
     
     if (len(foods)>0):
-        for f in foods:
-            f.display()
         agente.hunt(foods[0])
 
+        agente.display_food(foods[0]) #########################################################################
     agente.update()
     agente.display()
     
