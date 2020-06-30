@@ -75,7 +75,7 @@ class Vehicle():
     
     #Metodo para 'Comer' outro objeto
     def comer_alvo(self):
-        self.alvo.morrer()
+        self.alvo.dead()
         del self.alvo
         self.hunted += 1
 
@@ -94,7 +94,7 @@ class Vehicle():
             vertex(self.r, self.r * 2)
             endShape(CLOSE)
 
-    def display_food(self, target): #########################################################################
+    def display_food(self, target):
         #adicao um atributo on the Fly
         self.alvo = target
        # Draw a triangle rotated in the direction of velocity
