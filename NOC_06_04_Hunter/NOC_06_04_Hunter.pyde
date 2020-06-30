@@ -10,44 +10,30 @@
 # One vehicle "seeks"
 # See: http://www.red3d.com/cwr/
 
+from random import randint
 from Vehicle import Vehicle
 from Food import Food
 
-#adiciona uma nova comida no array de foods
-def acrecetar_comida():
-    foods.append(Food(random(width),random(height), PVector(0,0)))
-        
-
 def setup():
-    global agente, foods
+    global food, vehicle
     size(640, 360)
-    velocity = PVector(0, 0)
-    agente = Vehicle(width / 2, height / 2, velocity)
-    foods = [Food(random(width),random(height), PVector(0,0)) for x in range(3)]
-
+    food = Food(random(width),random(height), PVector(0,0))
+    vehicle = Vehicle(width / 2, height / 2, PVector(0, 0))
 
 def draw():
     background(255)
-    
+
     #pontuação
     textSize(25)
-    text('Pontos {}'.format(agente.hunted), 10, 30)
+    text('Pontos {}'.format(vehicle.hunted), 10, 30)
     fill(0, 0, 0)
-    
-    if (len(foods)>0):
-        for f in foods:
-            f.display()
-        agente.hunt(foods[0])
 
-    agente.update()
-    agente.display()
-    
-    if (len(foods)>0 and not foods[0].is_alive):
-        foods.pop(0)
-        
-  
-def keyTyped():
-    #caso a tecla '+' precionada, chama a função acrecetar_comida()
-    if key == '+':
-        acrecetar_comida()
-    
+    global food
+
+    if food.is_dead:
+        food = Food(random(width),random(height), PVector(0,0))
+
+    vehicle.hunt(food)
+    vehicle.display_food(food)
+    vehicle.update()
+    vehicle.display()

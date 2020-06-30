@@ -9,7 +9,7 @@ class Food():
         self.r = 6
         self.maxspeed = 1.0
         self.maxforce = 0.01
-        self.is_alive = True
+        self.is_dead = False
 
     # Method to update location
     def update(self):
@@ -41,10 +41,6 @@ class Food():
             # vertex(self.r, self.r * 2)
             # endShape(CLOSE)
     
-    # Funcao para destruir o objeto 
-    def morrer(self):
-        print('morto')
-        self.is_alive = False
-        #Deveria destruir o elemento, mas nao estah fazendo 
-        #del self
-        
+    # Funcao para matar o objeto 
+    def dead(self):
+        self.is_dead = True
