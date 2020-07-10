@@ -9,7 +9,6 @@ class Nodo:
         self.valor = valor
         
     def display(self):
-        square(self.x, self.y,self.lado)
         #valor indica que tem parede
         if(self.valor == -1):
             fill(0)
@@ -33,6 +32,7 @@ class Nodo:
         #valor indica que noh aberto
         elif(self.valor == 3):
             fill(0,255,255)
+        square(self.x, self.y,self.lado)
             
             
     def __str__(self):

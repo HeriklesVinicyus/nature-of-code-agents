@@ -31,7 +31,7 @@ class Grid():
                 return [i,j]
             
     def adicionar_obstaculos(self):
-        for i in range(int((self.quant_hor * self.quant_ver)*0.3)):
+        for i in range(int((self.quant_hor * self.quant_ver)*0.2)):
             aux = self.procurar_posicao_vazia()
             self.nodes[aux[0]][aux[1]].mudar_valor(-1)
 
