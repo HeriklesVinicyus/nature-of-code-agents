@@ -7,7 +7,8 @@ def setup():
     global g, f, a
     
     g = Grid(500,500,20,20)#não colar valor impar(erro futuramente concertado)
-    f = Food(g.procurar_posicao_vazia())
+    aux = g.procurar_posicao_vazia()
+    f = Food(aux[0],aux[1])
     a = Agente()
     
     size(500,550)
@@ -18,6 +19,5 @@ def setup():
 def draw():
       g.display()
       g.posicao_agente(a.i,a.j)
-      if(not f.is_dead):
-        g.add_comida_nodo(f.x, f.y)
+
       

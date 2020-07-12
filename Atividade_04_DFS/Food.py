@@ -2,9 +2,9 @@
 
 class Food():
 
-    def __init__(self, array_ij):
-        self.x = array_ij[0]
-        self.y = array_ij[1]
+    def __init__(self, i,j):
+        self.i = i
+        self.j = j
         self.is_dead = False
     
 
