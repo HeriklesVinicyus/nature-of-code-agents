@@ -18,25 +18,24 @@ class Grid():
     
     def procurar_posicao_vazia(self):
         while(True):
-            i = random.randrange(1, self.quant_hor)
-            j = random.randrange(1, self.quant_ver)
-            if(self.nodes[i][j].valor == 0):
+            i = random.randrange(0, self.quant_hor)
+            j = random.randrange(0, self.quant_ver)
+            
+            if(self.nodes[i][j].valor == 0 and i != int(math.ceil(self.quant_hor/2)) and j != int(math.ceil(self.quant_ver/2))):
                 return [i,j]
             
     def posicao_agente(self,i,j):
-        print(self.nodes[i][j])
-        print(i,j)
         self.nodes[i][j].mudar_valor(1)
     
-    def add_comida_node(self,i, j):
+    def posicao_comida_node(self,i, j):
+        self.__limpar_fechados_abertos_comida()
         self.nodes[i][j].mudar_valor(2)
     
         
     def display(self):
-        aux_altura = self.altura/self.quant_ver
-        aux_largura = self.largura/self.quant_hor
+        aux_altura = math.ceil(self.altura/self.quant_ver)
+        aux_largura = math.ceil(self.largura/self.quant_hor)
         aux_y = 0
-        
         for i in self.nodes:
             aux_x = 0
             for j in i:
@@ -91,15 +90,20 @@ class Grid():
                 #verifica se tem no a cima
                 if(i-1 > -1 and self.nodes[i-1][j].valor != -1):
                     aux.append([i-1,j])
-                #verifica se tem no a baixo
-                if(i+1 < self.quant_hor and self.nodes[i+1][j].valor != -1):
-                    aux.append([i+1,j])
                 #verifica se tem no a esqueda
                 if(j-1 > -1 and self.nodes[i][j-1].valor != -1):
                     aux.append([i,j-1])
+                #verifica se tem no a baixo
+                if(i+1 < self.quant_hor and self.nodes[i+1][j].valor != -1):
+                    aux.append([i+1,j])
+                
                     
                 self.nodes[i][j].add_array_nodes_visiveis(aux)
-        
+    def __limpar_fechados_abertos_comida(self):
+        for i in self.nodes:
+            for j in i:
+                if (j.valor in [2,3,4]):
+                    j.mudar_valor(0)
     #<<
             
 
