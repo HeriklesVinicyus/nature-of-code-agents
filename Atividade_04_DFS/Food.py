@@ -7,7 +7,5 @@ class Food():
         self.j = j
         self.is_dead = False
     
-
-
     def dead(self):
         self.is_dead = True
