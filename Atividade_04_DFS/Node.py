@@ -12,4 +12,4 @@ class Node:
         self.nodes_visiveis.append(array_nodes)
     
     def __str__(self):
-        return 'i = {}, j = {}, valor = {}'.format(self.i,self.j, self.valor)
+        return 'i = {}, j = {}, valor = {}, nodes visiveis = {}'.format(self.i,self.j, self.valor, self.nodes_visiveis)
