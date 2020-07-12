@@ -10,9 +10,10 @@ class Grid():
         self.quant_ver = quant_ver
         self.nodes = []
         
-        #
+        #Rotina de inicializacao
         self.__iniciar_matrix_nodes()
         self.__adicionar_obstaculos()
+        self.__adicionar_nodes_visiveis()
             
     
     def procurar_posicao_vazia(self):
@@ -30,28 +31,12 @@ class Grid():
     def add_comida_node(self,i, j):
         self.nodes[i][j].mudar_valor(2)
     
-    def nodes_visiveis(self, i, j):
-        aux = []
-        #verifica se tem no a direita
-        if(j+1 < self.quant_ver):
-            aux.append([i,j+1])
-        #verifica se tem no a cima
-        if(i-1 > -1 ):
-            aux.append([i-1,j])
-        #verifica se tem no a baixo
-        if(i+1 > self.quant_hor):
-            aux.append([i+1,j])
-        #verifica se tem no a esqueda
-        if(j-1 > -1):
-            aux.append([i,j-1])
-        
-        return aux
         
     def display(self):
         aux_altura = self.altura/self.quant_ver
         aux_largura = self.largura/self.quant_hor
-        
         aux_y = 0
+        
         for i in self.nodes:
             aux_x = 0
             for j in i:
@@ -83,20 +68,39 @@ class Grid():
                 aux_x += aux_largura
             aux_y += aux_altura
     
-    #
+    #Rotina de inicializacao>>
     def __iniciar_matrix_nodes(self):
         for i in range(self.quant_ver):
             self.nodes.append([])
             for j in range(self.quant_hor):
                 self.nodes[i].append(Node(i, j))
-        
             
     def __adicionar_obstaculos(self):
         for i in range(int((self.quant_hor * self.quant_ver)*0.2)):
             aux = self.procurar_posicao_vazia()
             self.nodes[aux[0]][aux[1]].mudar_valor(-1)
+    
+    #Dentro do node existe uma variavel com os nodes que ela conhece. essa funcao adiciona os valores dos nodes visiveis
+    def __adicionar_nodes_visiveis(self):
+        for i in range(len(self.nodes)):
+            for j in range(len(self.nodes[i])):
+                aux = []
+                #verifica se tem no a direita
+                if(j+1 < self.quant_ver and self.nodes[i][j+1].valor != -1):
+                    aux.append([i,j+1])
+                #verifica se tem no a cima
+                if(i-1 > -1 and self.nodes[i-1][j].valor != -1):
+                    aux.append([i-1,j])
+                #verifica se tem no a baixo
+                if(i+1 < self.quant_hor and self.nodes[i+1][j].valor != -1):
+                    aux.append([i+1,j])
+                #verifica se tem no a esqueda
+                if(j-1 > -1 and self.nodes[i][j-1].valor != -1):
+                    aux.append([i,j-1])
+                    
+                self.nodes[i][j].add_array_nodes_visiveis(aux)
         
-
+    #<<
             
 
                         
