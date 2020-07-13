@@ -21,8 +21,12 @@ class Agente:
         '''
         # verifica se no node tem comida(valor 2)
         if(conteudo == 2):
+            self.i = self.atual[0]
+            self.j = self.atual[1]
+            self.__limpar_fechados_aberto()
             self.achou_comida = True
             self.pontos += 1
+            
             return self.achou_comida
             
         self.atual = self.nodes_abertos.pop(-1) if len(self.nodes_abertos)>0 else self.atual
@@ -34,3 +38,11 @@ class Agente:
         
         self.nodes_fechados.append(self.atual)
         return self.achou_comida
+    
+    def __caminhar_ate_comida(self):
+        pass
+        
+    def __limpar_fechados_aberto(self):
+        self.nodes_fechados = []
+        self.nodes_abertos = [[self.i,self.j]]
+        self.atual = [self.i,self.j]
