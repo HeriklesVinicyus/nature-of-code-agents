@@ -6,7 +6,6 @@ class Node:
         self.nodes_visiveis = []
     
     def mudar_valor(self, valor):
-        print('asd',self.i,self.j, valor)
         self.valor = valor
     
     def add_array_nodes_visiveis(self, array_nodes):
