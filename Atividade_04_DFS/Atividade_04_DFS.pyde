@@ -7,10 +7,10 @@ import math
 #conf tela
 altura = 600
 largura = 600
-quant_hor = 5#colocar igual a ver(erro serah concertado)
-quant_ver = 5#colocar igual a hor(erro serah concertado)
-altura_tela = int(math.ceil(altura/quant_ver)*quant_ver)
-largura_tela = int(math.ceil(largura/quant_hor)*quant_hor+50)
+quant_hor = 11#colocar igual a ver(erro serah concertado)
+quant_ver = 11#colocar igual a hor(erro serah concertado)
+altura_tela = int(math.ceil(altura/quant_ver)*quant_ver+50)
+largura_tela = int(math.ceil(largura/quant_hor)*quant_hor)
 
 def setup():    
     global g, f, a
@@ -26,7 +26,7 @@ def setup():
     #Muda a velocidade de que atualiza draw
     frameRate(2)
     
-    size(altura_tela, largura_tela)
+    size(largura_tela, altura_tela)
     background(255)
     
 def draw():
@@ -52,5 +52,10 @@ def draw():
     g.posicao_agente(a.i,a.j)
 
     g.display()
+    
+    #pontuação
+    textSize(25)
+    fill(0, 0, 0)
+    text('Pontos {}'.format(a.pontos), 10, height-15)
     
     print(g)

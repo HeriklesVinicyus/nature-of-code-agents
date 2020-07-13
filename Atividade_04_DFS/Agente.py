@@ -34,6 +34,3 @@ class Agente:
         
         self.nodes_fechados.append(self.atual)
         return self.achou_comida
-        
-        
-                
