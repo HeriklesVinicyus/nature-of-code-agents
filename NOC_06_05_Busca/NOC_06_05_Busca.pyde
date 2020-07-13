@@ -5,13 +5,15 @@ from Food import Food
 from Grid import Grid
 
 # w is size of each cell 
-w = 16
+w = 10
 
 def setup():
     
+    frameRate(10)
+    
     #Setup para a construção do gáfico
     global nCols, nRows, grid
-    size(640, 359)
+    size(640, 360)
     nCols = int(width/w)
     nRows = int(height/w)
     grid = makeGrid()
@@ -22,8 +24,8 @@ def setup():
 
     #Setup da Comida e do Veiculo            
     global food, vehicle
-    food = Food(randrange(1,width/w)*w - w, randrange(1,height/w)*w - w, PVector(0,0))
-    vehicle = Vehicle(width / 2, height / 2, PVector(0, 0), w)
+    food = Food(randrange(1,width/w+1)*w - w, randrange(1,height/w+1)*w - w, PVector(0,0))
+    vehicle = Vehicle((width/(2*w)-1)*w, (height/(2*w)-1)*w, PVector(0, 0), w)
         
 def draw():
     
@@ -56,7 +58,8 @@ def draw():
     if food.is_dead:
         food = Food(randrange(1,width/w+1)*w - w, randrange(1,height/w+1)*w - w, PVector(0,0))
     
-    vehicle.hunt(food)
+    #vehicle.hunt(food)
+    vehicle.hunt_Grid(food)
     vehicle.display_food(food)
     vehicle.update()
     vehicle.display()

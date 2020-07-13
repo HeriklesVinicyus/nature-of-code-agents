@@ -107,3 +107,28 @@ class Vehicle():
         with pushMatrix():
             translate(self.alvo.position.x, self.alvo.position.y)
             rect(0, 0, self.scl, self.scl)  # A comida esta do tamanho de 1 espaco do grid
+                        
+    def hunt_Grid(self,target):
+        self.alvo = target
+        
+        mesma_linha_da_comida = False
+        mesma_coluna_da_comida = False
+        
+        #Caminha pelas colunas ate que a coluna seja igual a da fruta
+        if(self.position.x != self.alvo.position.x):
+            if(self.position.x > self.alvo.position.x):
+                self.position.x = self.position.x - self.scl
+            else: self.position.x += self.scl
+        else:
+            mesma_coluna_da_comida = True
+        
+        #Caminha pelas linhas ate que a linha seja igual a da fruta
+        if(self.position.y != self.alvo.position.y):
+            if(self.position.y > self.alvo.position.y):
+                self.position.y = self.position.y - self.scl
+            else: self.position.y += self.scl
+        else:
+            mesma_linha_da_comida = True
+            
+        if (mesma_linha_da_comida and mesma_coluna_da_comida):
+            self.comer_alvo()
