@@ -1,23 +1,39 @@
 class Agente:
     def __init__(self, i, j):
+        self.pontos = 0
         #posicao atual no grid
         self.i = i
         self.j = j
-        self.nodes_fechados = []
-        self.nodes_abertos = []
-    
-    def buscar(self):
-        pass
         
-    def __ver_conexoes_node(self, array_nodes_visiveis):
+        self.achou_comida = False
+        self.posicao_comida = []#test
+        self.caminho = []#test
+        
+        self.nodes_fechados = []
+        self.nodes_abertos = [[i,j]]
+        self.atual = [i,j]
+        #test
+        self.caminho = []
+    
+    def buscar_comida(self, conteudo, array_nodes_visiveis):
         '''
         array_nodes_visiveis = nodos visiveis do node atual
         '''
-        for x in array_nodes_visiveis:
-            if (x not in self.nodes_fechados) or (x not in self.nodes_abertos):
-                self.nodes_abertos.append(x)
-    
-    
+        # verifica se no node tem comida(valor 2)
+        if(conteudo == 2):
+            self.achou_comida = True
+            self.pontos += 1
+            return self.achou_comida
+            
+        self.atual = self.nodes_abertos.pop(-1) if len(self.nodes_abertos)>0 else self.atual
         
-    
-    
+        aux_pilha_nodes = array_nodes_visiveis
+        for x in aux_pilha_nodes:
+            if(x not in self.nodes_fechados) and (x not in self.nodes_abertos):
+                self.nodes_abertos.append(x)
+        
+        self.nodes_fechados.append(self.atual)
+        return self.achou_comida
+        
+        
+                
