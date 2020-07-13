@@ -78,12 +78,10 @@ class Grid():
                 self.nodes[i][j].add_array_nodes_visiveis(aux)
                 
     def __limpar_fechados_abertos_comida(self):
-        for i in self.nodes:
-            for j in i:
-                print(j.valor in [2,3,4])
-                if (j.valor in [2,3,4]):
-                    print(j.valor in [2,3,4])
-                    j.mudar_valor(0)
+        for i in range(len(self.nodes)):
+            for j in range(len(self.nodes[i])):
+                if (self.nodes[i][j].valor in [1,2,3,4]):
+                    self.nodes[i][j].mudar_valor(0)
     #Rotina<<
     
     #
