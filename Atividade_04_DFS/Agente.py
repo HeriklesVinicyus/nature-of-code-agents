@@ -1,17 +1,17 @@
 class Agente:
-    def __init__(self, i, j):
+    def __init__(self,nodo_inicial):
         self.pontos = 0
         #posicao atual no grid
-        self.i = i
-        self.j = j
+        self.i = nodo_inicial.i
+        self.j = nodo_inicial.j
         
         self.achou_comida = False
         self.posicao_comida = []#test
         self.caminho = []#test
         
         self.nodes_fechados = []
-        self.nodes_abertos = [[i,j]]
-        self.atual = [i,j]
+        self.nodes_abertos = [nodo_inicial]
+        self.atual = nodo_inicial
         
     #algoritmo de busca
     def buscar_comida(self, conteudo, array_nodes_visiveis):
@@ -20,14 +20,14 @@ class Agente:
         '''
         # verifica se no node tem comida(valor 2)
         if(conteudo == 2):
-            self.i = self.atual[0]
-            self.j = self.atual[1]
+            self.i = self.atual.i
+            self.j = self.atual.j
             self.__limpar_fechados_aberto()
             self.achou_comida = True
             self.pontos += 1
             return self.achou_comida
             
-        self.atual = self.nodes_abertos.pop(-1) if len(self.nodes_abertos)>0 else self.atual
+        self.atual = self.nodes_abertos.pop(0) if len(self.nodes_abertos)>0 else self.atual
         
         aux_pilha_nodes = array_nodes_visiveis
         for x in aux_pilha_nodes:
@@ -43,6 +43,6 @@ class Agente:
         
     def __limpar_fechados_aberto(self):
         self.nodes_fechados = []
-        self.nodes_abertos = [[self.i,self.j]]
-        self.atual = [self.i,self.j]
+        self.nodes_abertos = [self.atual]
+        self.atual = self.atual
     #<<
