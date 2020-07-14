@@ -12,9 +12,8 @@ class Agente:
         self.nodes_fechados = []
         self.nodes_abertos = [[i,j]]
         self.atual = [i,j]
-        #test
-        self.caminho = []
-    
+        
+    #algoritmo de busca
     def buscar_comida(self, conteudo, array_nodes_visiveis):
         '''
         array_nodes_visiveis = nodos visiveis do node atual
@@ -26,7 +25,6 @@ class Agente:
             self.__limpar_fechados_aberto()
             self.achou_comida = True
             self.pontos += 1
-            
             return self.achou_comida
             
         self.atual = self.nodes_abertos.pop(-1) if len(self.nodes_abertos)>0 else self.atual
@@ -39,6 +37,7 @@ class Agente:
         self.nodes_fechados.append(self.atual)
         return self.achou_comida
     
+    #Rotinas >>
     def __caminhar_ate_comida(self):
         pass
         
@@ -46,3 +45,4 @@ class Agente:
         self.nodes_fechados = []
         self.nodes_abertos = [[self.i,self.j]]
         self.atual = [self.i,self.j]
+    #<<
