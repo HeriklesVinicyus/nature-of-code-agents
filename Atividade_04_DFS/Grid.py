@@ -31,6 +31,9 @@ class Grid():
     def pintar_nodes_abertos(self, array_abertos):#TUDO Mudar para nome melhor
         for x in array_abertos:
             self.nodes[x[0]][x[1]].mudar_valor(3)
+            
+    def pintar_nodes_atual(self, atual):#TUDO Mudar para nome melhor
+        self.nodes[x[0]][x[1]].mudar_valor(3)
     
     def retornar_node(self,i,j):
         return [self.nodes[i][j].valor,self.nodes[i][j].nodes_visiveis]
@@ -43,7 +46,7 @@ class Grid():
             if(self.nodes[i][j].valor == 0 and i != int(math.ceil(self.quant_hor/2)) and j != int(math.ceil(self.quant_ver/2))):
                 return [i,j]
             
-    #Rotina de inicializacao>>
+    #Rotinas de inicializacao>>
     def __iniciar_matrix_nodes(self):
         
         for i in range(self.quant_ver):
@@ -81,10 +84,10 @@ class Grid():
         for i in range(len(self.nodes)):
             for j in range(len(self.nodes[i])):
                 if (self.nodes[i][j].valor in [1,2,3,4]):
-                    self.nodes[i][j].mudar_valor(0)
-    #Rotina<<
+                    self.nodes[i][j].mudar_valor(0)        
+    #Rotinas<<
     
-    #
+    
     def display(self):
         aux_altura = math.ceil(self.altura/self.quant_ver)
         aux_largura = math.ceil(self.largura/self.quant_hor)
@@ -100,31 +103,30 @@ class Grid():
                 elif(j.valor == 0):
                     fill(255)
                     
-                #valor indica estah o agente
+                #valor indica estah o agente (Verde)
                 elif(j.valor == 1):
-                    fill(0,255,0)
+                    fill(0,200,0)
                     
-                #valor indica que tem comida
+                #valor indica que tem comida (Vermelha)
                 elif(j.valor == 2):
-                    fill(255,0,0)
+                    fill(200,0,0)
                     
-                #valor indica que noh fechado
+                #valor indica que noh fechado (Roxo)
                 elif(j.valor == 4):
                     fill(128,0,128)
                     
-                #valor indica que noh aberto
+                #valor indica que noh aberto (Ciano)
                 elif(j.valor == 3):
                     fill(0,255,255)
                     
                 rect(aux_x, aux_y, aux_largura, aux_altura)   
                 aux_x += aux_largura
             aux_y += aux_altura
-    
+    #
     def __str__(self):
         aux = ''
         for x in self.nodes:
             for y in x:
                 aux += '{:>3}'.format(y.valor)
             aux += '\n'
-        return aux
-                
+        return aux    

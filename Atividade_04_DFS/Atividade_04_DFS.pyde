@@ -5,10 +5,10 @@ from Agente import Agente
 import math
 
 #conf tela
-altura = 400
-largura = 400
-quant_hor = 11#colocar igual a ver(erro serah concertado)
-quant_ver = 11#colocar igual a hor(erro serah concertado)
+altura = 500
+largura = 500
+quant_hor = 21#colocar igual a ver(erro serah concertado)
+quant_ver = 21#colocar igual a hor(erro serah concertado)
 altura_tela = int(math.ceil(altura/quant_ver)*quant_ver+50)
 largura_tela = int(math.ceil(largura/quant_hor)*quant_hor)
 
@@ -24,7 +24,7 @@ def setup():
     a = Agente(int(math.ceil(quant_hor/2)),int(math.ceil(quant_ver/2)))
         
     #Muda a velocidade de que atualiza draw
-    frameRate(10)
+    frameRate(15)
     
     size(largura_tela, altura_tela)
     background(255)
@@ -33,6 +33,8 @@ def draw():
     global f
     
     #pontuação
+    fill(255)
+    rect(0,height-50, width,height-50)
     textSize(25)
     fill(0, 0, 0)
     text('Pontos {}'.format(a.pontos), 10, height-15)
