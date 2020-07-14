@@ -26,14 +26,14 @@ class Grid():
     
     def pintar_nodes_fechados(self, array_fechados):#TUDO Mudar para nome melhor
         for x in array_fechados:
-            self.nodes[x[0]][x[1]].mudar_valor(4)
+            self.nodes[x.i][x.j].mudar_valor(4)
             
     def pintar_nodes_abertos(self, array_abertos):#TUDO Mudar para nome melhor
         for x in array_abertos:
-            self.nodes[x[0]][x[1]].mudar_valor(3)
+            self.nodes[x.i][x.j].mudar_valor(3)
             
     def pintar_nodes_atual(self, atual):#TUDO Mudar para nome melhor
-        self.nodes[x[0]][x[1]].mudar_valor(3)
+        self.nodes[x.i][x.j].mudar_valor(3)
     
     def retornar_node(self,i,j):
         return [self.nodes[i][j].valor,self.nodes[i][j].nodes_visiveis]
@@ -67,16 +67,16 @@ class Grid():
                 aux = []
                 #verifica se tem no a direita
                 if(j+1 < self.quant_hor and self.nodes[i][j+1].valor != -1):
-                    aux.append([i,j+1])
+                    aux.append(self.nodes[i][j+1])
                 #verifica se tem no a cima
                 if(i-1 > -1 and self.nodes[i-1][j].valor != -1):
-                    aux.append([i-1,j])
+                    aux.append(self.nodes[i-1][j])
                 #verifica se tem no a esqueda
                 if(j-1 > -1 and self.nodes[i][j-1].valor != -1):
-                    aux.append([i,j-1])
+                    aux.append(self.nodes[i][j-1])
                 #verifica se tem no a baixo
                 if(i+1 < self.quant_ver and self.nodes[i+1][j].valor != -1):
-                    aux.append([i+1,j])
+                    aux.append(self.nodes[i+1][j])
 
                 self.nodes[i][j].add_array_nodes_visiveis(aux)
                 

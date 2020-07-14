@@ -7,8 +7,8 @@ import math
 #conf tela
 altura = 500
 largura = 500
-quant_hor = 21#colocar igual a ver(erro serah concertado)
-quant_ver = 21#colocar igual a hor(erro serah concertado)
+quant_hor = 11#colocar igual a ver(erro serah concertado)
+quant_ver = 11#colocar igual a hor(erro serah concertado)
 altura_tela = int(math.ceil(altura/quant_ver)*quant_ver+50)
 largura_tela = int(math.ceil(largura/quant_hor)*quant_hor)
 
@@ -21,7 +21,7 @@ def setup():
     f = Food(aux[0],aux[1])
     
     #configurado para agente iniciar no meio do grid
-    a = Agente(int(math.ceil(quant_hor/2)),int(math.ceil(quant_ver/2)))
+    a = Agente(g.nodes[int(math.ceil(quant_hor/2))][int(math.ceil(quant_ver/2))])
         
     #Muda a velocidade de que atualiza draw
     frameRate(15)
@@ -40,12 +40,11 @@ def draw():
     text('Pontos {}'.format(a.pontos), 10, height-15)
     
     #variavel temporaria para auxiliar a funcao de busca do alimento;
-    aux_node = g.retornar_node(a.atual[0], a.atual[1])
+    aux_node = g.retornar_node(a.atual.i, a.atual.j)
     a.buscar_comida(aux_node[0], aux_node[1])
     
     if (a.achou_comida): 
         f.dead()
-        print(a.i,a.j)
         
     if(f.is_dead):
         aux = g.procurar_posicao_vazia()

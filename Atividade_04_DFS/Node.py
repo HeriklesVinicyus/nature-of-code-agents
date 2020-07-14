@@ -13,4 +13,4 @@ class Node:
             self.nodes_visiveis.append(x)
         
     def __str__(self):
-        return 'i = {}, j = {}, valor = {}, nodes visiveis = {}'.format(self.i,self.j, self.valor, self.nodes_visiveis)
+        return '[{},{}]'.format(self.i,self.j,)
