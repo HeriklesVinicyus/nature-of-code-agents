@@ -27,7 +27,7 @@ class Agente:
             self.pontos += 1
             return self.achou_comida
             
-        self.atual = self.nodes_abertos.pop(0) if len(self.nodes_abertos)>0 else self.atual
+        self.atual = self.nodes_abertos.pop(-1) if len(self.nodes_abertos)>0 else self.atual
         
         aux_pilha_nodes = array_nodes_visiveis
         for x in aux_pilha_nodes:

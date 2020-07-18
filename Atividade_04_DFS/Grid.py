@@ -33,7 +33,10 @@ class Grid():
             self.nodes[x.i][x.j].mudar_valor(3)
             
     def pintar_nodes_atual(self, atual):#TUDO Mudar para nome melhor
-        self.nodes[x.i][x.j].mudar_valor(3)
+        self.nodes[atual.i][atual.j].mudar_valor(5)
+        
+    def pintar_proximo_node_anilizado(self, prox):#TUDO Mudar para nome melhor
+        self.nodes[prox.i][prox.j].mudar_valor(6)
     
     def retornar_node(self,i,j):
         return [self.nodes[i][j].valor,self.nodes[i][j].nodes_visiveis]
@@ -87,7 +90,6 @@ class Grid():
                     self.nodes[i][j].mudar_valor(0)        
     #Rotinas<<
     
-    
     def display(self):
         aux_altura = math.ceil(self.altura/self.quant_ver)
         aux_largura = math.ceil(self.largura/self.quant_hor)
@@ -95,15 +97,15 @@ class Grid():
         for i in self.nodes:
             aux_x = 0
             for j in i:
-                #valor indica que tem parede
+                #valor indica que tem parede (Preto)
                 if(j.valor == -1):
                     fill(0)
                     
-                #valor indica que estah vazio
+                #valor indica que estah vazio (Branco)
                 elif(j.valor == 0):
                     fill(255)
                     
-                #valor indica estah o agente (Verde)
+                #valor indica onde estah o agente (Verde)
                 elif(j.valor == 1):
                     fill(0,200,0)
                     
@@ -118,6 +120,14 @@ class Grid():
                 #valor indica que noh aberto (Ciano)
                 elif(j.valor == 3):
                     fill(0,255,255)
+                
+                #valor indica qual serah o proximo noh
+                elif(j.valor == 5):
+                    fill(243,156,18)
+                
+                #valor indica qual eh o noh atual de observado
+                elif(j.valor == 6):
+                    fill(3,155,229)
                     
                 rect(aux_x, aux_y, aux_largura, aux_altura)   
                 aux_x += aux_largura

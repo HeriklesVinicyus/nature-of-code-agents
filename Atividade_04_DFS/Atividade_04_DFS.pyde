@@ -24,7 +24,7 @@ def setup():
     a = Agente(g.nodes[int(math.ceil(quant_hor/2))][int(math.ceil(quant_ver/2))])
         
     #Muda a velocidade de que atualiza draw
-    frameRate(15)
+    frameRate(1)
     
     size(largura_tela, altura_tela)
     background(255)
@@ -43,7 +43,7 @@ def draw():
     aux_node = g.retornar_node(a.atual.i, a.atual.j)
     a.buscar_comida(aux_node[0], aux_node[1])
     
-    if (a.achou_comida): 
+    if(a.achou_comida): 
         f.dead()
         
     if(f.is_dead):
@@ -52,9 +52,11 @@ def draw():
         g.posicao_comida_node(f.i,f.j)
         a.achou_comida = False
     
-    g.pintar_nodes_fechados(a.nodes_fechados)
     g.pintar_nodes_abertos(a.nodes_abertos)
+    g.pintar_nodes_fechados(a.nodes_fechados)
+    g.pintar_nodes_atual(a.atual)
+    g.pintar_proximo_node_anilizado(a.nodes_abertos[-1])
     g.posicao_comida_node(f.i,f.j)
     g.posicao_agente(a.i,a.j)
-
+    print(g)
     g.display()
