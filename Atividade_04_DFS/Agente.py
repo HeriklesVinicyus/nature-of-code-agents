@@ -27,14 +27,15 @@ class Agente:
             self.pontos += 1
             return self.achou_comida
             
-        self.atual = self.nodes_abertos.pop(-1) if len(self.nodes_abertos)>0 else self.atual
-        
         aux_pilha_nodes = array_nodes_visiveis
         for x in aux_pilha_nodes:
             if(x not in self.nodes_fechados) and (x not in self.nodes_abertos):
                 self.nodes_abertos.append(x)
+                
+        self.nodes_fechados.append(self.atual)        
+        self.atual = self.nodes_abertos.pop(-1) if len(self.nodes_abertos)>0 else self.atual
         
-        self.nodes_fechados.append(self.atual)
+        
         return self.achou_comida
     
     #Rotinas >>
