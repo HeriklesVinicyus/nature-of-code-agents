@@ -72,7 +72,6 @@ def draw():
             f = Food(aux[0],aux[1])
             g.posicao_comida_node(f.i,f.j)
             a.achou_comida = False
-            g = Grid(altura_grid,largura_grid,quant_hor,quant_ver)
             a = Agente(g.nodes[a.atual.j][a.atual.i], a.pontos)
         else:
             a.buscar_comida()
