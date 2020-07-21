@@ -4,9 +4,13 @@ class Node:
         self.j = j
         self.valor = 0
         self.nodes_visiveis = []
+        self.father = None
     
     def mudar_valor(self, valor):
         self.valor = valor
+
+    def setFather(self, father):
+        self.father = father
     
     def add_array_nodes_visiveis(self, array_nodes):
         for x in array_nodes:
