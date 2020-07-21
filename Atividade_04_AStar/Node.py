@@ -9,6 +9,11 @@ class Node:
         self.g = 0
         self.h = 0
 
+    def calculate_F(self, g, i, j):
+        self.g = g
+        self.h = sqrt(pow(self.i - i, 2) + pow(self.j - j, 2))
+        self.f = self.h + self.g
+
     def mudar_valor(self, valor):
         self.valor = valor
 
