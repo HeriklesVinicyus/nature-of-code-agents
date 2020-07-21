@@ -12,6 +12,7 @@ class Agente:
         self.nodes_fechados = []
         self.nodes_abertos = [nodo_inicial]
         self.atual = nodo_inicial
+        self.dead_lock = False
 
     # algoritmo de busca
     def buscar_comida(self):
@@ -36,7 +37,7 @@ class Agente:
         if len(self.nodes_abertos) > 0:
             self.atual = self.nodes_abertos.pop(0)
         else:
-            self.achou_comida = True
+            self.dead_lock = True
 
         return self.achou_comida
 

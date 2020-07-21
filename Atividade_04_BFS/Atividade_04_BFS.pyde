@@ -71,7 +71,12 @@ def draw():
             a = Agente(g.nodes[f.i][f.j], a.pontos)
             aux = g.procurar_posicao_vazia()
             f = Food(aux[0],aux[1])
-            g.posicao_comida_node(f.i,f.j)
+            g.posicao_comida_node(f.i,f.j)            
+        elif(a.dead_lock == True):
+            aux = g.procurar_posicao_vazia()
+            f = Food(aux[0],aux[1])
+            g.posicao_comida_node(f.i,f.j) 
+            a.dead_lock = False 
         else:
             a.buscar_comida()
             # grid_secundario(a.nodes_abertos, a.nodes_fechados)
