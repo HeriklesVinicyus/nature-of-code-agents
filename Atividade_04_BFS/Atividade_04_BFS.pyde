@@ -15,8 +15,8 @@ tela_auxiliar = largura_grid*0.4
 altura_tela = int(math.ceil(altura_grid/quant_ver)*quant_ver+50)
 largura_tela = int(math.ceil(largura_grid/quant_hor)*quant_hor + tela_auxiliar)
 
-def setup():    
-    global g, f, a
+def setup():
+    global g, f, a, path
 
     g = Grid(altura_grid,largura_grid,quant_hor,quant_ver)
 
@@ -26,6 +26,8 @@ def setup():
     #configurado para agente iniciar no meio do grid
     a = Agente(g.nodes[int(math.ceil(quant_hor/2))][int(math.ceil(quant_ver/2))])
 
+    path = []
+
     #Muda a velocidade de que atualiza draw
     frameRate(10)
 
@@ -33,7 +35,7 @@ def setup():
     background(255)
 
 def draw():
-    global f
+    global g, f, a, path
 
     #pontuação
     fill(255)
@@ -41,28 +43,41 @@ def draw():
     textSize(25)
     fill(0, 0, 0)
     text('Pontos {}'.format(a.pontos), 10, height-15)
-    
-    #variavel temporaria para auxiliar a funcao de busca do alimento;
-    aux_node = g.retornar_node(a.atual.i, a.atual.j)
-    a.buscar_comida(aux_node[0], aux_node[1])
-    
-    if(a.achou_comida): 
-        f.dead()
-        
-    if(f.is_dead):
-        aux = g.procurar_posicao_vazia()
-        f = Food(aux[0],aux[1])
+
+    if(len(path) > 0):
+        node = path.pop(0)
         g.posicao_comida_node(f.i,f.j)
-        a.achou_comida = False
-        
-    grid_secundario(a.nodes_abertos, a.nodes_fechados)
-    g.pintar_nodes_fechados(a.nodes_fechados)
-    g.pintar_nodes_abertos(a.nodes_abertos)
-    g.pintar_nodes_atual(a.atual)
-    g.pintar_proximo_node_anilizado(a.nodes_abertos[-1])
-    g.posicao_comida_node(f.i,f.j)
-    g.posicao_agente(a.i,a.j)
-    g.display()
+        g.posicao_agente(node.i,node.j)
+        g.display(True)
+    else:
+        a.buscar_comida()
+
+        if(a.achou_comida == True and f.is_dead == False):
+            father = a.atual.father
+            while father != None:
+                if (father not in path):
+                    path.append(father)
+                    father = father.father
+                else:
+                    father = None
+            path = path[::-1]
+            f.dead()
+        elif(f.is_dead == True):
+            aux = g.procurar_posicao_vazia()
+            f = Food(aux[0],aux[1])
+            g.posicao_comida_node(f.i,f.j)
+            a.achou_comida = False
+            g = Grid(altura_grid,largura_grid,quant_hor,quant_ver)
+            a = Agente(g.nodes[a.atual.j][a.atual.i])
+        else:
+            g.pintar_nodes_fechados(a.nodes_fechados)
+            g.pintar_nodes_abertos(a.nodes_abertos)
+            g.pintar_nodes_atual(a.atual)
+            if len(a.nodes_abertos)>0:
+                g.pintar_proximo_node_anilizado(a.nodes_abertos[-1])
+            g.posicao_comida_node(f.i,f.j)
+            g.posicao_agente(a.i,a.j)
+            g.display()
 
 #melhor nome
 def grid_secundario(abertos, fechados):
