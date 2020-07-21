@@ -5,6 +5,9 @@ class Node:
         self.valor = 0
         self.nodes_visiveis = []
         self.father = None
+        self.f = 0
+        self.g = 0
+        self.h = 0
 
     def mudar_valor(self, valor):
         self.valor = valor
