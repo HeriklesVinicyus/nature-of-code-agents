@@ -29,7 +29,7 @@ def setup():
     path = []
 
     #Muda a velocidade de que atualiza draw
-    frameRate(10)
+    frameRate(50)
 
     size(largura_tela, altura_tela)
     background(255)
@@ -45,11 +45,13 @@ def draw():
     text('Pontos {}'.format(a.pontos), 10, height-15)
 
     if(len(path) > 0):
+        frameRate(10)
         node = path.pop(0)
         g.posicao_comida_node(f.i,f.j)
         g.posicao_agente(node.i,node.j)
         g.display(True)
     else:
+        frameRate(50)
         a.buscar_comida()
 
         if(a.achou_comida == True and f.is_dead == False):
