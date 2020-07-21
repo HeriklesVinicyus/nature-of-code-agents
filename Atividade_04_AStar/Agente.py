@@ -29,6 +29,7 @@ class Agente:
         for childNode in self.atual.nodes_visiveis:
             if(childNode.valor != -1 and childNode not in self.nodes_fechados) and (childNode not in self.nodes_abertos):
                 childNode.set_Father(self.atual)
+                childNode.calculate_F(self.atual.g + 1, food.i, food.j)
                 self.nodes_abertos.append(childNode)
 
         self.nodes_fechados.append(self.atual)
