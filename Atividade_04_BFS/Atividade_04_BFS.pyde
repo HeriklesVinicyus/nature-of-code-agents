@@ -1,4 +1,4 @@
-from Grid import Grid 
+from Grid import Grid
 from Food import Food
 from Agente import Agente
 
@@ -19,22 +19,22 @@ def setup():
     global g, f, a
 
     g = Grid(altura_grid,largura_grid,quant_hor,quant_ver)
-     
+
     aux = g.procurar_posicao_vazia()
     f = Food(aux[0],aux[1])
-    
+
     #configurado para agente iniciar no meio do grid
     a = Agente(g.nodes[int(math.ceil(quant_hor/2))][int(math.ceil(quant_ver/2))])
-        
+
     #Muda a velocidade de que atualiza draw
     frameRate(10)
-    
+
     size(largura_tela, altura_tela)
     background(255)
-    
+
 def draw():
     global f
-    
+
     #pontuação
     fill(255)
     rect(0,height-50, largura_tela,height-50)
@@ -73,12 +73,12 @@ def grid_secundario(abertos, fechados):
     #pilha fechados
     fill(0)
     rect(x_tela_aux+20, 10, tela_auxiliar*0.3, height-70)
-        
+
     #pilha abertas
     fill(0)
     rect(x_tela_aux+120, 10, tela_auxiliar*0.3, height-70)
     '''
-    
+
     aux_y = height-70-tela_auxiliar*0.1
     fill(0)
     textSize(16)
@@ -90,7 +90,7 @@ def grid_secundario(abertos, fechados):
         fill(0)
         text('{}:{},{}'.format(n,x.i,x.j), x_tela_aux+23, aux_y+tela_auxiliar*0.1)
         aux_y -= tela_auxiliar*0.1
-    
+
     aux_y = height-70-tela_auxiliar*0.1
     text('A', x_tela_aux+123, aux_y+tela_auxiliar*0.2)
     for n,x in enumerate(abertos):
@@ -100,7 +100,3 @@ def grid_secundario(abertos, fechados):
         fill(0)
         text('{}:{},{}'.format(n,x.i,x.j), x_tela_aux+123, aux_y+tela_auxiliar*0.1)
         aux_y -= tela_auxiliar*0.1
-    
-    
-    
-        

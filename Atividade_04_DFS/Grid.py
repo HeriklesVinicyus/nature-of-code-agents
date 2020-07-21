@@ -69,7 +69,7 @@ class Grid():
             for j in range(len(self.nodes[i])):
                 aux = []
                 #verifica se tem no a direita
-                if(j+1 < self.quant_hor and self.nodes[i][j+1].valor != -1):
+                if(j+1 < self.quant_hor and self.nodes[i][j+1].valor != -1):     
                     aux.append(self.nodes[i][j+1])
                 #verifica se tem no a cima
                 if(i-1 > -1 and self.nodes[i-1][j].valor != -1):
@@ -81,7 +81,8 @@ class Grid():
                 if(i+1 < self.quant_ver and self.nodes[i+1][j].valor != -1):
                     aux.append(self.nodes[i+1][j])
 
-                self.nodes[i][j].add_array_nodes_visiveis(aux)
+                   
+                self.nodes[i][j].add_array_nodes_visiveis(aux)      
                 
     def __limpar_fechados_abertos_comida(self):
         for i in range(len(self.nodes)):

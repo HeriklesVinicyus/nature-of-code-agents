@@ -12,7 +12,7 @@ class Grid():
         self.quant_ver = quant_ver
         
         self.nodes = []
-        
+
         #Rotina de inicializacao
         self.__iniciar_matrix_nodes()
         self.__adicionar_obstaculos()
