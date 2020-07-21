@@ -52,7 +52,6 @@ def draw():
         g.display(True)
     else:
         frameRate(50)
-        a.buscar_comida()
 
         if(a.achou_comida == True and f.is_dead == False):
             father = a.atual.father
@@ -72,6 +71,7 @@ def draw():
             g = Grid(altura_grid,largura_grid,quant_hor,quant_ver)
             a = Agente(g.nodes[a.atual.j][a.atual.i], a.pontos)
         else:
+            a.buscar_comida()
             # grid_secundario(a.nodes_abertos, a.nodes_fechados)
             g.pintar_nodes_fechados(a.nodes_fechados)
             g.pintar_nodes_abertos(a.nodes_abertos)
