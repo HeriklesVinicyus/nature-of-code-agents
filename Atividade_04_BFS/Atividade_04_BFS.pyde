@@ -68,11 +68,10 @@ def draw():
             path = path[::-1]
             f.dead()
         elif(f.is_dead == True):
+            a = Agente(g.nodes[f.i][f.j], a.pontos)
             aux = g.procurar_posicao_vazia()
             f = Food(aux[0],aux[1])
             g.posicao_comida_node(f.i,f.j)
-            a.achou_comida = False
-            a = Agente(g.nodes[a.atual.j][a.atual.i], a.pontos)
         else:
             a.buscar_comida()
             # grid_secundario(a.nodes_abertos, a.nodes_fechados)
