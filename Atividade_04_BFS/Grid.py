@@ -37,9 +37,6 @@ class Grid():
         
     def pintar_proximo_node_anilizado(self, prox):#TUDO Mudar para nome melhor
         self.nodes[prox.i][prox.j].mudar_valor(6)
-    
-    def retornar_node(self,i,j):
-        return [self.nodes[i][j].valor,self.nodes[i][j].nodes_visiveis]
         
     def procurar_posicao_vazia(self):
         self.__limpar_fechados_abertos_comida()
