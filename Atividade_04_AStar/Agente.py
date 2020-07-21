@@ -23,7 +23,6 @@ class Agente:
             self.j = self.atual.j
             self.__limpar_fechados_aberto()
             self.achou_comida = True
-            self.pontos += 1
             return self.achou_comida
 
         for childNode in self.atual.nodes_visiveis:

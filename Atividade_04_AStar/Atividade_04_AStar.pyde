@@ -68,7 +68,7 @@ def draw():
             path = path[::-1]
             f.dead()
         elif(f.is_dead == True):
-            a = Agente(g.nodes[f.i][f.j], a.pontos)
+            a = Agente(g.nodes[f.i][f.j], a.pontos + 1)
             aux = g.procurar_posicao_vazia()
             f = Food(aux[0],aux[1])
             g.posicao_comida_node(f.i,f.j)
