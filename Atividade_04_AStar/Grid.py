@@ -85,7 +85,7 @@ class Grid():
     def __limpar_fechados_abertos_comida(self):
         for i in range(len(self.nodes)):
             for j in range(len(self.nodes[i])):
-                if (self.nodes[i][j].valor in [1, 2, 3, 4]):
+                if (self.nodes[i][j].valor in [1, 2, 3, 4, 5, 6]):
                     self.nodes[i][j].mudar_valor(0)
     # Rotinas<<
 
