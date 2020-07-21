@@ -11,7 +11,7 @@ class Node:
 
     def calculate_F(self, g, i, j):
         self.g = g
-        self.h = sqrt(pow(self.i - i, 2) + pow(self.j - j, 2))
+        self.h = abs(self.i - i) + abs(self.j - j)
         self.f = self.h + self.g
 
     def mudar_valor(self, valor):
