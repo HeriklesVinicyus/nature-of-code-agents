@@ -90,7 +90,7 @@ class Grid():
                     self.nodes[i][j].mudar_valor(0)        
     #Rotinas<<
     
-    def display(self):
+    def display(self, run = False):
         aux_altura = math.ceil(self.altura/self.quant_ver)
         aux_largura = math.ceil(self.largura/self.quant_hor)
         aux_y = 0
@@ -113,20 +113,23 @@ class Grid():
                 elif(j.valor == 2):
                     fill(200,0,0)
                     
+                elif(run == True):
+                    fill(255)
+                    
                 #valor indica que noh fechado (Roxo)
-                elif(j.valor == 4):
+                elif(j.valor == 4 and run == False):
                     fill(128,0,128)
                     
                 #valor indica que noh aberto (Ciano)
-                elif(j.valor == 3):
+                elif(j.valor == 3 and run == False):
                     fill(0,255,255)
                 
                 #valor indica qual serah o proximo noh
-                elif(j.valor == 5):
+                elif(j.valor == 5and run == False):
                     fill(243,156,18)
                 
                 #valor indica qual eh o noh atual de observado
-                elif(j.valor == 6):
+                elif(j.valor == 6 and run == False):
                     fill(3,155,229)
                     
                 rect(aux_x, aux_y, aux_largura, aux_altura)   
