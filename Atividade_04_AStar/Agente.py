@@ -6,8 +6,6 @@ class Agente:
         self.j = nodo_inicial.j
 
         self.achou_comida = False
-        self.posicao_comida = []  # test
-        self.caminho = []  # test
 
         self.nodes_fechados = []
         self.nodes_abertos = [nodo_inicial]
