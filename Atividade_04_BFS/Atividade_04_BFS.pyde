@@ -10,7 +10,7 @@ largura_grid = 500
 quant_hor = 21#colocar igual a ver(erro serah concertado)
 quant_ver = 21#colocar igual a hor(erro serah concertado)
 
-tela_auxiliar = largura_grid*0.4
+tela_auxiliar = 0#largura_grid*0.4
 
 altura_tela = int(math.ceil(altura_grid/quant_ver)*quant_ver+50)
 largura_tela = int(math.ceil(largura_grid/quant_hor)*quant_hor + tela_auxiliar)
@@ -70,6 +70,7 @@ def draw():
             g = Grid(altura_grid,largura_grid,quant_hor,quant_ver)
             a = Agente(g.nodes[a.atual.j][a.atual.i])
         else:
+            # grid_secundario(a.nodes_abertos, a.nodes_fechados)
             g.pintar_nodes_fechados(a.nodes_fechados)
             g.pintar_nodes_abertos(a.nodes_abertos)
             g.pintar_nodes_atual(a.atual)
