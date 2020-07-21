@@ -70,7 +70,7 @@ def draw():
             g.posicao_comida_node(f.i,f.j)
             a.achou_comida = False
             g = Grid(altura_grid,largura_grid,quant_hor,quant_ver)
-            a = Agente(g.nodes[a.atual.j][a.atual.i])
+            a = Agente(g.nodes[a.atual.j][a.atual.i], a.pontos)
         else:
             # grid_secundario(a.nodes_abertos, a.nodes_fechados)
             g.pintar_nodes_fechados(a.nodes_fechados)

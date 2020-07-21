@@ -1,6 +1,6 @@
 class Agente:
-    def __init__(self, nodo_inicial):
-        self.pontos = 0
+    def __init__(self, nodo_inicial, pontos=0):
+        self.pontos = pontos
         # posicao atual no grid
         self.i = nodo_inicial.i
         self.j = nodo_inicial.j
