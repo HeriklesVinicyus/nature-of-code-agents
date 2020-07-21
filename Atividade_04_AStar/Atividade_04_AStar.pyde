@@ -78,7 +78,7 @@ def draw():
             g.posicao_comida_node(f.i,f.j)
             a.dead_lock = False
         else:
-            a.buscar_comida()
+            a.buscar_comida(f)
             # grid_secundario(a.nodes_abertos, a.nodes_fechados)
             g.pintar_nodes_fechados(a.nodes_fechados)
             g.pintar_nodes_abertos(a.nodes_abertos)

@@ -13,7 +13,7 @@ class Agente:
         self.dead_lock = False
 
     # algoritmo de busca
-    def buscar_comida(self):
+    def buscar_comida(self, food):
         '''
         array_nodes_visiveis = nodos visiveis do node atual
         '''
