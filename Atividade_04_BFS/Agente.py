@@ -33,6 +33,11 @@ class Agente:
                 self.nodes_abertos.append(childNode)
 
         self.nodes_fechados.append(self.atual)
+        if len(self.nodes_abertos) > 0:
+            self.atual = self.nodes_abertos.pop(0)
+        else:
+            self.achou_comida = True
+
         return self.achou_comida
 
     # Rotinas >>
