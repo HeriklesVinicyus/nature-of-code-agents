@@ -16,7 +16,7 @@ altura_tela = int(math.ceil(altura_grid/quant_ver)*quant_ver+50)
 largura_tela = int(math.ceil(largura_grid/quant_hor)*quant_hor + tela_auxiliar)
 
 def setup():
-    global g, f, a, path
+    global g, f, a, path, node
 
     g = Grid(altura_grid,largura_grid,quant_hor,quant_ver)
 
@@ -27,6 +27,8 @@ def setup():
     a = Agente(g.nodes[int(math.ceil(quant_hor/2))][int(math.ceil(quant_ver/2))])
 
     path = []
+    
+    node = None
 
     #Muda a velocidade de que atualiza draw
     frameRate(50)
@@ -35,7 +37,7 @@ def setup():
     background(255)
 
 def draw():
-    global g, f, a, path
+    global g, f, a, path, node
 
     #pontuação
     fill(255)
@@ -46,6 +48,8 @@ def draw():
 
     if(len(path) > 0):
         frameRate(10)
+        if (node != None):
+            node.valor = 0
         node = path.pop(0)
         g.posicao_comida_node(f.i,f.j)
         g.posicao_agente(node.i,node.j)
