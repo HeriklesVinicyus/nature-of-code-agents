@@ -33,7 +33,13 @@ class Agente:
                 self.nodes_abertos.append(childNode)
 
         self.nodes_fechados.append(self.atual)
+
+        def get_F(node):
+            return node.f
+
         if len(self.nodes_abertos) > 0:
+            self.nodes_abertos.sort(key=get_F)
+
             self.atual = self.nodes_abertos.pop(0)
         else:
             self.dead_lock = True
