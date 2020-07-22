@@ -36,7 +36,11 @@ class Agente:
         def get_F(node):
             return node.f
 
+        def get_G(node):
+            return node.g
+
         if len(self.nodes_abertos) > 0:
+            self.nodes_abertos.sort(key=get_G)
             self.nodes_abertos.sort(key=get_F)
 
             self.atual = self.nodes_abertos.pop(0)
