@@ -86,7 +86,7 @@ class Grid():
         for i in range(len(self.nodes)):
             for j in range(len(self.nodes[i])):
                 if (self.nodes[i][j].valor in [1, 2, 3, 4, 5, 6]):
-                    self.nodes[i][j].mudar_valor(0)
+                    self.nodes[i][j].reset()
     # Rotinas<<
 
     def display(self, run=False):

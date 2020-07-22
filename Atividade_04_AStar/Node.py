@@ -9,6 +9,12 @@ class Node:
         self.g = 0
         self.h = 0
 
+    def reset(self):
+        self.valor = 0
+        self.f = 0
+        self.g = 0
+        self.h = 0
+
     def calculate_F(self, g, i, j):
         self.g = g
         self.h = abs(self.i - i) + abs(self.j - j)
