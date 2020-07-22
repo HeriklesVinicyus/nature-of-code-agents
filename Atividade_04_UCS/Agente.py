@@ -28,11 +28,16 @@ class Agente:
         for childNode in self.atual.nodes_visiveis:
             if(childNode.valor != -1 and childNode not in self.nodes_fechados) and (childNode not in self.nodes_abertos):
                 childNode.set_Father(self.atual)
+                childNode.calculate_Function_G(self.atual.g + 1)
                 self.nodes_abertos.append(childNode)
 
         self.nodes_fechados.append(self.atual)
 
+        def get_G(node):
+            return node.g
+
         if len(self.nodes_abertos) > 0:
+            self.nodes_abertos.sort(key=get_G)
 
             self.atual = self.nodes_abertos.pop(0)
         else:

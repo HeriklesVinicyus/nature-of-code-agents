@@ -78,7 +78,7 @@ def draw():
             f = Food(aux[0],aux[1])
             g.posicao_comida_node(f.i,f.j)
         else:
-            a.buscar_comida()
+            a.buscar_comida(f)
             # grid_secundario(a.nodes_abertos, a.nodes_fechados)
             g.pintar_nodes_fechados(a.nodes_fechados)
             g.pintar_nodes_abertos(a.nodes_abertos)

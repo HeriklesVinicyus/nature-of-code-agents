@@ -5,22 +5,15 @@ class Node:
         self.valor = 0
         self.nodes_visiveis = []
         self.father = None
-        self.f = 0
-        self.g = 0
         self.h = 0
 
     def reset(self):
         self.valor = 0
-        self.f = 0
-        self.g = 0
         self.h = 0
 
-    def calculate_F(self, g, i, j):
-        self.g = g
+    def calculate_Function_H(self, i, j):
         self.h = abs(self.i - i) + abs(self.j - j)
-        self.f = self.h + self.g
-
-
+        
     def mudar_valor(self, valor):
         self.valor = valor
 

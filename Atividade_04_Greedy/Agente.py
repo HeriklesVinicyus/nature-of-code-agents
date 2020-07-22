@@ -13,7 +13,7 @@ class Agente:
         self.dead_lock = False
 
     # algoritmo de busca
-    def buscar_comida(self):
+    def buscar_comida(self, food):
         '''
         array_nodes_visiveis = nodos visiveis do node atual
         '''
@@ -28,11 +28,17 @@ class Agente:
         for childNode in self.atual.nodes_visiveis:
             if(childNode.valor != -1 and childNode not in self.nodes_fechados) and (childNode not in self.nodes_abertos):
                 childNode.set_Father(self.atual)
+                childNode.calculate_Function_H(food.i, food.j)
                 self.nodes_abertos.append(childNode)
 
         self.nodes_fechados.append(self.atual)
 
+        def get_H(node):
+            return node.h
+
         if len(self.nodes_abertos) > 0:
+            
+            self.nodes_abertos.sort(key=get_H)
 
             self.atual = self.nodes_abertos.pop(0)
         else:
